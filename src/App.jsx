@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+//import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { useState, useEffect } from "react";
+import PropertyList from "./components/PropertyList";
+import AddProperty from "./components/AddProperty";
+import axios from "axios";
+import "./App.css";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+	const [properties, setProperties] = useState([]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+	useEffect(() => {
+		axios
+			.get("http://localhost:5000/api/properties")
+			.then((response) => setProperties(response.data))
+			.catch((error) => console.error(error));
+	}, []); // Empty dependency array to fetch properties once on mount
+
+
+	const handleAddProperty = (newProperty) => {
+		setProperties((prevProperties) => [...prevProperties, newProperty]);
+	};
+
+	const handleContactOwner = (contact) => {
+		alert(`Contacting the owner of property is ${contact}`);
+	};
+
+	const handleDeleteProperty = (propertyId) => {
+		axios
+			.delete(`http://localhost:5000/api/properties/${propertyId}`)
+      
+			.then((response) => {
+				// Filter out the deleted property from the state
+				setProperties((prevProperties) =>
+					prevProperties.filter(
+						(property) => property._id !== propertyId
+					)
+				);
+			})
+			.catch((error) => console.error(error));
+	};
+
+	return (
+		<div style={{}}>
+			<h1 className="gfg" style={{ margin: "10px 10px" }}>
+				GFG
+			</h1>
+			<h1 style={{ marginTop: "10px" }}>Real Estate Management</h1>
+			<div>
+				<AddProperty onAddProperty={handleAddProperty} />
+				<PropertyList
+					onDeleteProperty={handleDeleteProperty}
+					properties={properties}
+					onContactOwner={handleContactOwner}
+				/>
+			</div>
+		</div>
+	);
+};
+
+
+
+  
+
 
 export default App
