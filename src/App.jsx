@@ -1,7 +1,7 @@
 //import {BrowserRouter, Routes, Route} from "react-router-dom";
 import { useState, useEffect } from "react";
-import PropertyList from "./components/PropertyList";
-import AddProperty from "./components/AddProperty";
+import PropertyList from "./pages/propertyList";
+import AddProperty from "./pages/AddProperty";
 import axios from "axios";
 import "./App.css";
 
@@ -30,7 +30,7 @@ function App() {
 		axios
 			.delete(`http://localhost:5000/api/properties/${propertyId}`)
       
-			.then((response) => {
+			.then(() => {
 				// Filter out the deleted property from the state
 				setProperties((prevProperties) =>
 					prevProperties.filter(

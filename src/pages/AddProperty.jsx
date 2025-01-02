@@ -1,9 +1,8 @@
-// src/components/AddProperty.js
 import { useState } from 'react';
 import axios from 'axios';
 import '../App.css'
 
-const AddProperty = ({ onAddProperty }) => {
+const AddProperty = ( onAddProperty ) => {
 	const [newProperty, setNewProperty] = useState({
 		title: '',
 		description: '',
@@ -13,7 +12,7 @@ const AddProperty = ({ onAddProperty }) => {
 
 	const handleAddProperty = () => {
 		// Submit a new property
-		axios.post('http://localhost:5000/api/properties', newProperty)
+		axios.post('http://localhost:5000/api/properties/add-property', newProperty)
 			.then(response => {
 				// Notify the parent component about the new property
 				onAddProperty(response.data);

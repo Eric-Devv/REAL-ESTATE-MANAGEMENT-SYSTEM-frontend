@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import ProductItem from "./ProductItem";
-import { itemContext } from "../context/itemContext";
+//import ProductItem from "./ProductItem";
+//import { itemContext } from "../context/itemContext";
 import "../App.css";
 
-const ProductList = () => {
+const PropertyList = () => {
 	const { products } = useContext(itemContext);
 	const [sortedProducts, setSortedProducts] = useState([...products]);
 	// Keep a local state for sorted products
@@ -88,4 +88,4 @@ const ProductList = () => {
 	);
 };
 
-export default ProductList;
+export default PropertyList;
