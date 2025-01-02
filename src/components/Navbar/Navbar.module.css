@@ -1,5 +1,5 @@
 .header nav{
-    background-color: rgb(80, 63, 228);
+    background-color: rgb(128, 127, 140);
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 
 }
@@ -7,7 +7,6 @@
     width: 100%;
     list-style: none;
     display: flex;
-    justify-content: center;
     align-items: center;
    
 }
@@ -17,9 +16,9 @@
 }
 .header nav ul li a{
     height: 100%;
-    padding: 0 30px;
+    padding: 0 40px;
     text-decoration: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     color: azure;
 }

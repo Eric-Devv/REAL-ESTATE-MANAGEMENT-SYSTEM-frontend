@@ -32,8 +32,8 @@ const AddProperty = ( onAddProperty ) => {
 	return (
 		<div>
 			<Navbar />
-			<h2 style={{ "color": "#007BFF" }}>
-				Add a New Property
+			<h2 style={{ "color": "#242424" }}>
+				Add a new property
 			</h2>
 			<form onSubmit={(e) => {
 				e.preventDefault();
@@ -90,7 +90,7 @@ const AddProperty = ( onAddProperty ) => {
 					</label>
 				</div>
 				<button type="submit"
-					style={{ backgroundColor: "blue" }}>
+					style={{ backgroundColor: "grey" }}>
 					Add Property
 				</button>
 			</form>
