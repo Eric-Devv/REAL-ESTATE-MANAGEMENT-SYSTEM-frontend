@@ -1,0 +1,28 @@
+.header nav{
+    background-color: rgb(80, 63, 228);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+
+}
+.header nav ul{
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.header nav ul li{
+    height: 50px;
+    
+}
+.header nav ul li a{
+    height: 100%;
+    padding: 0 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: azure;
+}
+.header nav li:first-child{
+    margin-right: 700px;
+}

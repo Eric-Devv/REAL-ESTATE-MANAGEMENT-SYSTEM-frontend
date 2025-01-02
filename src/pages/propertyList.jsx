@@ -1,90 +1,39 @@
-import { useContext, useEffect, useState } from "react";
-//import ProductItem from "./ProductItem";
-//import { itemContext } from "../context/itemContext";
+import { useEffect, useState } from "react";
+import Property from "../components/PropertyCard";
+import axios from "axios";
 import "../App.css";
 
 const PropertyList = () => {
-	const { products } = useContext(itemContext);
-	const [sortedProducts, setSortedProducts] = useState([...products]);
-	// Keep a local state for sorted products
-	const [minPrice, setMinPrice] = useState(0);
-	const [maxPrice, setMaxPrice] = useState(3000);
-	const [selectedType, setSelectedType] = useState("all");
-	// 'all' represents no type filter
+
+	const[property_list, setProperty_list] = useState([])
+
 
 	useEffect(() => {
-		setSortedProducts([...products]);
-	}, [products]);
+		axios
+			.get("http://localhost:5000/api/properties")
+			.then((response) => setProperty_list(response.data))
+			.catch((error) => console.error(error));
+	}, []); // Empty dependency array to fetch properties once on mount
 
-	const handleSortByPrice = () => {
-		const sorted = [...sortedProducts].sort((a, b) => a.price - b.price);
-		setSortedProducts(sorted);
-	};
 
-	const handleFilterByPriceRange = () => {
-		const filtered = products.filter(
-			(product) => product.price >= minPrice && product.price <= maxPrice
-		);
-		setSortedProducts(filtered);
-	};
 
-	const handleFilterByType = () => {
-		if (selectedType === "all") {
-			// Reset the type filter
-			setSortedProducts([...products]);
-		} else {
-			const filtered = products.filter(
-				(product) => product.type === selectedType
-			);
-			setSortedProducts(filtered);
-		}
-	};
 
+	
 	return (
-		<div className="prdt-list">
-			<h2>Product List</h2>
-			<div className="filter-btn">
-				<button onClick={handleSortByPrice}>Sort by Price</button>
-				<label>
-					Min Price:
-					<input
-						type="number"
-						value={minPrice}
-						onChange={(e) => setMinPrice(Number(e.target.value))}
-					/>
-				</label>
-				<label>
-					Max Price:
-					<input
-						type="number"
-						value={maxPrice}
-						onChange={(e) => setMaxPrice(Number(e.target.value))}
-					/>
-				</label>
-				<button onClick={() => handleFilterByPriceRange()}>
-					Filter by Price Range
-				</button>
-				<label>
-					Filter by Type:
-					<select
-						value={selectedType}
-						onChange={(e) => setSelectedType(e.target.value)}
-					>
-						<option value="all">All</option>
-						<option value="Fruit">Fruit</option>
-						<option value="Vegetable">Vegetable</option>
-						{/* Add more options as needed */}
-					</select>
-				</label>
-				<button onClick={handleFilterByType}>Filter by Type</button>
-			</div>
-			<ul className="item-card">
-				{sortedProducts.map((product) => (
-					<ProductItem key={product._id} product={product} />
+		<>  
+	
+
+		<ul className="item-card">
+				{property_list.map((property) => (
+					<Property key={property._id} property={property} />
 				))}
 			</ul>
-			<div className="buy-now-btn">Buy Now</div>
-		</div>
+		
+		
+		</>
+			
+			
+		
 	);
 };
 

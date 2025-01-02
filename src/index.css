@@ -25,7 +25,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -33,6 +32,26 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+input {
+  width: 36%;
+  height: 40px;
+  padding: 1px;
+}
+.property-card {
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  padding: 15px;
+  width: -moz-fit-content;
+  width: fit-content;
+  box-shadow: 0 14px 18px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin-bottom: 3rem;
+}
+.property-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 button {

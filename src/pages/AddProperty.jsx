@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Navbar from '../components/Navbar/navbar';
 import axios from 'axios';
 import '../App.css'
 
@@ -30,6 +31,7 @@ const AddProperty = ( onAddProperty ) => {
 
 	return (
 		<div>
+			<Navbar />
 			<h2 style={{ "color": "#007BFF" }}>
 				Add a New Property
 			</h2>
@@ -49,6 +51,7 @@ const AddProperty = ( onAddProperty ) => {
 									})}
 							required />
 					</label>
+					
 					<label>Description:
 						<input type="text"
 							value={newProperty.description}
@@ -61,6 +64,7 @@ const AddProperty = ( onAddProperty ) => {
 										})} required />
 					</label>
 				</div>
+				<br />
 				<div className="form-row">
 					<label>Image URL:
 						<input type="text"
@@ -73,7 +77,9 @@ const AddProperty = ( onAddProperty ) => {
 											image: e.target.value
 										})} required />
 					</label>
-					<label>Contact: <input type="text"
+					<br />
+					<label>Contact:  
+						<input type="text"
 						value={newProperty.contact}
 						onChange={
 							(e) => setNewProperty(

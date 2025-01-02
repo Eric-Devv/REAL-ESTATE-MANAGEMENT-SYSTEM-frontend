@@ -1,61 +1,19 @@
-//import {BrowserRouter, Routes, Route} from "react-router-dom";
-import { useState, useEffect } from "react";
-import PropertyList from "./pages/propertyList";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Homepage from "./pages/Homepage";
 import AddProperty from "./pages/AddProperty";
-import axios from "axios";
 import "./App.css";
 
 
 function App() {
-  
-	const [properties, setProperties] = useState([]);
-
-	useEffect(() => {
-		axios
-			.get("http://localhost:5000/api/properties")
-			.then((response) => setProperties(response.data))
-			.catch((error) => console.error(error));
-	}, []); // Empty dependency array to fetch properties once on mount
-
-
-	const handleAddProperty = (newProperty) => {
-		setProperties((prevProperties) => [...prevProperties, newProperty]);
-	};
-
-	const handleContactOwner = (contact) => {
-		alert(`Contacting the owner of property is ${contact}`);
-	};
-
-	const handleDeleteProperty = (propertyId) => {
-		axios
-			.delete(`http://localhost:5000/api/properties/${propertyId}`)
-      
-			.then(() => {
-				// Filter out the deleted property from the state
-				setProperties((prevProperties) =>
-					prevProperties.filter(
-						(property) => property._id !== propertyId
-					)
-				);
-			})
-			.catch((error) => console.error(error));
-	};
-
 	return (
-		<div style={{}}>
-			<h1 className="gfg" style={{ margin: "10px 10px" }}>
-				GFG
-			</h1>
-			<h1 style={{ marginTop: "10px" }}>Real Estate Management</h1>
-			<div>
-				<AddProperty onAddProperty={handleAddProperty} />
-				<PropertyList
-					onDeleteProperty={handleDeleteProperty}
-					properties={properties}
-					onContactOwner={handleContactOwner}
-				/>
-			</div>
-		</div>
+		<BrowserRouter>
+			<Routes>
+				<Route path="" element={<Homepage />}/>
+				<Route path="add-property" element={<AddProperty />}/>
+			</Routes>
+		
+		
+		</BrowserRouter>
 	);
 };
 
