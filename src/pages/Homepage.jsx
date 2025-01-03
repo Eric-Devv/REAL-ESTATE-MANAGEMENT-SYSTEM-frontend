@@ -40,7 +40,7 @@ function Homepage(){
 return(
     <div style={{}}>
 			<Navbar />
-			<h1 style={{ marginTop: "10px" }}>Kamulu Lands Agency</h1>
+			<h2 style={{ marginTop: "10px" }}><u>Regional Lands Agency</u></h2>
 			<div className="property-list">
 			
 				<PropertyList

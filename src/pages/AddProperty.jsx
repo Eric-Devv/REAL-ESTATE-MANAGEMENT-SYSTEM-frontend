@@ -7,6 +7,7 @@ const AddProperty = ( onAddProperty ) => {
 	const [newProperty, setNewProperty] = useState({
 		title: '',
 		description: '',
+		price:'',
 		image: '',
 		contact: '',
 	});
@@ -22,6 +23,7 @@ const AddProperty = ( onAddProperty ) => {
 				setNewProperty({
 					title: '',
 					description: '',
+					price:'',
 					image: '',
 					contact: '',
 				});
@@ -32,10 +34,13 @@ const AddProperty = ( onAddProperty ) => {
 	return (
 		<div>
 			<Navbar />
-			<h2 style={{ "color": "#242424" }}>
+			<h2 style={{ "color": "#242424","justifyContent":"center","display":"flex" }}>
 				Add a new property
 			</h2>
-			<form onSubmit={(e) => {
+			
+			<div className="form-container">
+			
+			<form method="POST" onSubmit={(e) => {
 				e.preventDefault();
 				handleAddProperty();
 			}}>
@@ -63,8 +68,19 @@ const AddProperty = ( onAddProperty ) => {
 											description: e.target.value
 										})} required />
 					</label>
+					<label>Price:
+						<input type="Number"
+							value={newProperty.price}
+							onChange={
+								(e) =>
+									setNewProperty(
+										{
+											...newProperty,
+											price: e.target.value
+										})} required />
+					</label>
 				</div>
-				<br />
+				
 				<div className="form-row">
 					<label>Image URL:
 						<input type="text"
@@ -77,7 +93,7 @@ const AddProperty = ( onAddProperty ) => {
 											image: e.target.value
 										})} required />
 					</label>
-					<br />
+					
 					<label>Contact:  
 						<input type="text"
 						value={newProperty.contact}
@@ -94,6 +110,9 @@ const AddProperty = ( onAddProperty ) => {
 					Add Property
 				</button>
 			</form>
+
+			</div>
+			
 		</div>
 	);
 };

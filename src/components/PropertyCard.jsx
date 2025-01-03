@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 //import React from "react"
 import { Link } from "react-router-dom";
 
-function Property ( property ){
+function Property ( {property} ){
 
     return(
         <>
@@ -9,6 +10,7 @@ function Property ( property ){
             <img src={property.image} alt={property.label}/>
             <h2>{property.title}</h2>
             <p>{property.description}</p>
+            <p>Ksh:{property.price}</p>
             <button><Link to="">{property.contact}</Link></button>
 
             </div>
