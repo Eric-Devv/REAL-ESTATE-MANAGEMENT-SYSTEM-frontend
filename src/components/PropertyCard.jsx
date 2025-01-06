@@ -1,16 +1,20 @@
 /* eslint-disable react/prop-types */
 //import React from "react"
 //import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import {usePropertyContext} from "../components/usePropertyContext"
 
 function Property ( {property} ){
 
 const {dispatch} = usePropertyContext()
+const navigate = useNavigate();
+
 
     const handleUpdate = async() => {
-       
-        
+
+        navigate(`/update-property/${property._id}`, { state: { property } });
+
     }
 
     const handleDelete = async() => {

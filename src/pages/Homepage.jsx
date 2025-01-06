@@ -1,51 +1,56 @@
-import {  useEffect,} from "react";
+import { useEffect, useState } from "react";
 import PropertyList from "./propertyList";
 import Navbar from "../components/Navbar/navbar";
-//import axios from "axios";
-//import { usePropertyContext } from "../components/usePropertyContext"
-import {usePropertyContext} from "../components/usePropertyContext"
+import { usePropertyContext } from "../components/usePropertyContext";
 
-function Homepage(){
-const{properties, dispatch} = usePropertyContext()
+function Homepage() {
+  const { properties, dispatch } = usePropertyContext();
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/properties");
+        if (!response.ok) {
+          throw new Error("Failed to fetch properties");
+        }
+        const json = await response.json();
+        dispatch({ type: "SET_PROPERTIES", payload: json });
+      } catch (err) {
+        setError(err.message); // Set error message if fetch fails
+      } finally {
+        setLoading(false); // Set loading to false once the request is complete
+      }
+    };
 
-	useEffect(() => {
-		const fetchProperties = async() => {
-			const response = await fetch("http://localhost:5000/api/properties")
-			const json = await response.json()
+    fetchProperties();
+  }, [dispatch]);
 
-			if (response.ok){
-				dispatch({type:"SET_PROPERTIES", payload: json})
-			}
-		}
-		
-		
-		
-		fetchProperties()
-		
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []); // Empty dependency array to fetch properties once on mount
+  if (loading) {
+    return <div>Loading properties...</div>; // Show loading message
+  }
 
+  if (error) {
+    return <div>Error: {error}</div>; // Show error message if fetch fails
+  }
 
-
-	
-
-
-return(
-    <div style={{}}>
-			<Navbar />
-			<h2 style={{ marginTop: "10px" }}><u>Regional Lands Agency</u></h2>
-			<div className="property-list">
-			
-			<PropertyList
-			
-			properties={properties}
-			/>
-					
-				
-			</div>
-		</div>
-)
+  return (
+    <div>
+      <Navbar />
+      <h2 style={{ marginTop: "10px" }}>
+        Regional Lands Agency
+      </h2>
+      <div className="property-list">
+        {/* Check if properties exist before rendering */}
+        {properties && properties.length > 0 ? (
+          <PropertyList properties={properties} />
+        ) : (
+          <p>No properties available</p> // Show message if no properties are available
+        )}
+      </div>
+    </div>
+  );
 }
 
-export default Homepage
+export default Homepage;

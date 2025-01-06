@@ -20,6 +20,12 @@ export const propertyReducer = (state, action) => {
                 properties: state.properties.filter((p) => p._id !== action.payload._id)
             }
 
+        case "UPDATE_PROPERTY":
+            return {
+                properties: state.properties.map((p) =>
+                  p._id === action.payload._id ? action.payload : p // Replace the matching property
+                ),
+              };
         default:
             return state
         
