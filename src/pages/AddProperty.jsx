@@ -18,7 +18,6 @@ const AddProperty = ( onAddProperty ) => {
 			.then(response => {
 				// Notify the parent component about the new property
 				onAddProperty(response.data);
-
 				// Clear the newProperty state for the next entry
 				setNewProperty({
 					title: '',
@@ -47,9 +46,7 @@ const AddProperty = ( onAddProperty ) => {
 				<div className="form-row">
 					<label>Title:
 						<input type="text"
-							value={newProperty.title}
-							onChange={(e) =>
-								setNewProperty(
+							value={newProperty.title} onChange={(e) =>	setNewProperty(
 									{
 										...newProperty,
 										title: e.target.value
