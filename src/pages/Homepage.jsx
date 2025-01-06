@@ -1,7 +1,7 @@
-import {  useEffect, useState } from "react";
+import {  useEffect,} from "react";
 import PropertyList from "./propertyList";
 import Navbar from "../components/Navbar/navbar";
-import axios from "axios";
+//import axios from "axios";
 //import { usePropertyContext } from "../components/usePropertyContext"
 import {usePropertyContext} from "../components/usePropertyContext"
 

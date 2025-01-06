@@ -22,6 +22,7 @@ const {dispatch} = usePropertyContext()
         const json = await response.json()
         if(response.ok){
             dispatch({type:"DELETE_PROPERTY", payload:json})
+           
         }
 
     }
