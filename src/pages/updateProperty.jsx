@@ -46,8 +46,9 @@ function UpdateProperty() {
   return (
     <>
     <Navbar />
-     <form onSubmit={handleSubmit}>
-      <h2>Update Property</h2>
+    <h2 style={{ color: '#242424', justifyContent: 'center', display: 'flex' }}>Update Property</h2>
+     <form onSubmit={handleSubmit} className="form-container">
+      
       <label>Title</label>
       <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
 
@@ -64,7 +65,7 @@ function UpdateProperty() {
       <label>Contact</label>
       <input type="text" value={contact} onChange={(e) => setContact(e.target.value)} />
 
-      <button type="submit">Update Property</button>
+      <button type="submit" style={{ backgroundColor: 'grey' }}>Update Property</button>
     </form>
     
     

@@ -28,7 +28,12 @@ function Homepage() {
   }, [dispatch]);
 
   if (loading) {
-    return <div>Loading properties...</div>; // Show loading message
+    return (
+      <div className="loading-container">
+        <div className="loading-icon"></div>
+        <div className="loading-text">Loading properties...</div>      
+      </div>
+    ); // Show loading message
   }
 
   if (error) {
@@ -38,7 +43,7 @@ function Homepage() {
   return (
     <div>
       <Navbar />
-      <h2 style={{ marginTop: "10px" }}>
+      <h2 className="home-title"style={{}}>
         Regional Lands Agency
       </h2>
       <div className="property-list">

@@ -11,8 +11,9 @@ return(
            
        <ul>
                
+              
                <li ><a href="/"> Real Estate Management </a></li>
-               <li> <Link to="/"> Home </Link></li>
+               <li><Link to="/"> Home </Link> </li>
                <li> <Link to="/add-property"> new property </Link></li>
                
                
@@ -23,7 +24,7 @@ return(
 
        </nav>
 
-       <hr></hr>
+  
    </header>    
        
     </div>
